@@ -48,6 +48,7 @@ return $res;
 } 
 
 
+
 function traerPreguntas() { 
 $sql = "select 
 p.idpregunta,
@@ -60,6 +61,23 @@ p.respuestaequivocada3,
 p.valor
 from dbpreguntas p 
 order by 1"; 
+$res = $this->query($sql,0); 
+return $res; 
+} 
+
+function traerPreguntasPorNivelLimit($nivel, $limit) { 
+$sql = "select 
+p.idpregunta,
+p.secuencia,
+p.pregunta,
+p.respuestacorrecta,
+p.respuestaequivocada1,
+p.respuestaequivocada2,
+p.respuestaequivocada3,
+p.valor
+from dbpreguntas p 
+where p.secuencia = ".$nivel."
+limit ".$limit.",1"; 
 $res = $this->query($sql,0); 
 return $res; 
 } 
@@ -128,32 +146,58 @@ return $res;
 /* /* Fin de la Tabla: dbusuarios*/
 
 
+
 /* PARA Usuariostribia */
 
-function insertarUsuariostribia($refusuarios,$cantidadaciertos,$cantidadpreguntas,$intento,$refestados,$refpremios,$puntobonus, $aciertobonus) { 
-	$sql = "insert into dbusuariostribia(idusuariotribia,refusuarios,cantidadaciertos,intento,refestados,refpremios,puntobonus,aciertobonus) 
-	values ('',".$refusuarios.",".$cantidadaciertos.",".$intento.",".$refestados.",".$refpremios.",".$puntobonus.",".$aciertobonus.")"; 
-	$res = $this->query($sql,1); 
-	return $res; 
+function insertarUsuariostribia($refparticipantes,$cantidadaciertos,$intento,$refestados,$refpremios,$puntobonusa,$aciertobonusa,$puntobonusb,$aciertobonusb) { 
+$sql = "insert into dbusuariostribia(idusuariotribia,refparticipantes,cantidadaciertos,intento,refestados,refpremios,puntobonusa,aciertobonusa,puntobonusb,aciertobonusb) 
+values ('',".$refparticipantes.",".$cantidadaciertos.",".$intento.",".$refestados.",".$refpremios.",".$puntobonusa.",".$aciertobonusa.",".$puntobonusb.",".$aciertobonusb.")"; 
+$res = $this->query($sql,1); 
+return $res; 
 } 
 
 
-function modificarUsuariostribia($id,$refusuarios,$cantidadaciertos,$intento,$refestados,$refpremios,$puntobonus,$aciertobonus) { 
-	$sql = "update dbusuariostribia 
-	set 
-	refusuarios = ".$refusuarios.",cantidadaciertos = ".$cantidadaciertos.",cantidadpreguntas = ".$cantidadpreguntas.",intento = ".$intento.",refestados = ".$refestados.",refpremios = ".$refpremios.",puntobonus = ".$puntobonus.",aciertobonus = ".$aciertobonus."
-	where idusuariotribia =".$id; 
-	$res = $this->query($sql,0); 
-	return $res; 
+function modificarUsuariostribia($id,$refparticipantes,$cantidadaciertos,$intento,$refestados,$refpremios,$puntobonusa,$aciertobonusa,$puntobonusb,$aciertobonusb) { 
+$sql = "update dbusuariostribia 
+set 
+refparticipantes = ".$refparticipantes.",cantidadaciertos = ".$cantidadaciertos.",intento = ".$intento.",refestados = ".$refestados.",refpremios = ".$refpremios.",puntobonusa = ".$puntobonusa.",aciertobonusa = ".$aciertobonusa.",puntobonusb = ".$puntobonusb.",aciertobonusb = ".$aciertobonusb." 
+where idusuariotribia =".$id; 
+$res = $this->query($sql,0); 
+return $res; 
 } 
 
-function agregarIntento($id) {
-	$sql = "update dbusuariostribia 
-	set 
-	intento = (intento + 1),refestados = 2
-	where idusuariotribia =".$id; 
+function modificarEstado($id, $estado) {
+	$sql = "update dbusuariostribia
+			set refestados = ".$estado."
+			 where refparticipantes = ".$id;
 	$res = $this->query($sql,0); 
 	return $res; 
+}
+
+function agregarAcierto($id, $acierto) {
+	$sql = "update dbusuariostribia
+			set intento = (intento + 1), cantidadaciertos = (cantidadaciertos + ".$acierto.")
+			 where refparticipantes = ".$id;
+	$res = $this->query($sql,0); 
+	return $res; 		 
+}
+
+
+function cargarBonoA($id) {
+	$sql = "update dbusuariostribia
+			set puntobonusa = 1, aciertobonusa = 1
+			 where refparticipantes = ".$id;
+	$res = $this->query($sql,0); 
+	return $res; 		 
+}
+
+
+function cargarBonoB($id) {
+	$sql = "update dbusuariostribia
+			set puntobonusb = 1, aciertobonusb = 1
+			 where refparticipantes = ".$id;
+	$res = $this->query($sql,0); 
+	return $res; 		 
 }
 
 
@@ -167,17 +211,19 @@ return $res;
 function traerUsuariostribia() { 
 $sql = "select 
 u.idusuariotribia,
-u.refusuarios,
+u.refparticipantes,
 u.cantidadaciertos,
 u.intento,
 u.refestados,
 u.refpremios,
-u.puntobonus,
-u.aciertobonus,
+u.puntobonusa,
+u.aciertobonusa,
+u.puntobonusb,
+u.aciertobonusb,
 u.fechacreacion
 from dbusuariostribia u 
-inner join dbusuarios usu ON usu.idusuario = u.refusuarios 
-inner join tbroles ro ON ro.idrol = usu.refroles 
+inner join dbparticipantes par ON par.idparticipante = u.refparticipantes 
+inner join dbusuarios us ON us.idusuario = par.refusuarios 
 inner join tbestados est ON est.idestado = u.refestados 
 inner join tbpremios pre ON pre.idpremio = u.refpremios 
 order by 1"; 
@@ -187,68 +233,149 @@ return $res;
 
 
 function traerUsuariostribiaGrid() { 
-	$sql = "select 
-				u.idusuariotribia,
-				usu.nombrecompleto,
-				pre.premio,
-				est.estado,
-				u.cantidadaciertos,
-				u.intento,
-				u.puntobonus,
-				u.aciertobonus,
-				u.fechacreacion,
-				u.refestados,
-				u.refpremios,
-				u.refusuarios
-	from dbusuariostribia u 
-	inner join dbusuarios usu ON usu.idusuario = u.refusuarios 
-	inner join tbroles ro ON ro.idrol = usu.refroles 
-	inner join tbestados est ON est.idestado = u.refestados 
-	inner join tbpremios pre ON pre.idpremio = u.refpremios 
-	order by u.fechacreacion desc"; 
-	$res = $this->query($sql,0); 
-	return $res; 
-} 
+$sql = "select 
+u.idusuariotribia,
+par.nombrecompleto,
+par.cedula,
+par.email,
+u.cantidadaciertos,
+u.intento,
+date_format(u.fechacreacion, '%Y/%m/%d %H:%i:%s') as fechacreacion,
+u.puntobonusa,
+u.aciertobonusa,
+u.puntobonusb,
+u.aciertobonusb,
 
-
-function traerUsuariostribiaGridPorUsuario($idusuario) { 
-	$sql = "select 
-				u.idusuariotribia,
-				usu.nombrecompleto,
-				pre.premio,
-				est.estado,
-				u.cantidadaciertos,
-				u.intento,
-				u.puntobonus,
-				u.aciertobonus,
-				u.fechacreacion,
-				u.refestados,
-				u.refpremios,
-				u.refusuarios
-	from dbusuariostribia u 
-	inner join dbusuarios usu ON usu.idusuario = u.refusuarios 
-	inner join tbroles ro ON ro.idrol = usu.refroles 
-	inner join tbestados est ON est.idestado = u.refestados 
-	inner join tbpremios pre ON pre.idpremio = u.refpremios 
-	where u.refusuarios = ".$idusuario."
-	order by u.fechacreacion desc"; 
-	$res = $this->query($sql,0); 
-	return $res; 
+u.refparticipantes,
+u.refestados,
+u.refpremios
+from dbusuariostribia u 
+inner join dbparticipantes par ON par.idparticipante = u.refparticipantes 
+inner join dbusuarios us ON us.idusuario = par.refusuarios 
+inner join tbestados est ON est.idestado = u.refestados 
+inner join tbpremios pre ON pre.idpremio = u.refpremios 
+where est.idestado in (3)
+order by u.cantidadaciertos desc"; 
+$res = $this->query($sql,0); 
+return $res; 
 } 
 
 
 function traerUsuariostribiaPorId($id) { 
-$sql = "select idusuariotribia,refusuarios,cantidadaciertos,
-			intento,refestados,refpremios,
-			(case when puntobonus = 1 then 'Si' else 'No' end) as puntobonus,
-			(case when aciertobonus = 1 then 'Si' else 'No' end) as aciertobonus,
-			fechacreacion from dbusuariostribia where idusuariotribia =".$id; 
+$sql = "select idusuariotribia,refparticipantes,cantidadaciertos,
+		intento,refestados,refpremios,
+		(case when puntobonusa = 1 then 'Si' else 'No' end) as puntobonusa,
+		(case when aciertobonusa = 1 then 'Si' else 'No' end) as aciertobonusa,
+		(case when puntobonusb = 1 then 'Si' else 'No' end) as puntobonusb,
+		(case when aciertobonusb = 1 then 'Si' else 'No' end) as aciertobonusb,
+		fechacreacion from dbusuariostribia where idusuariotribia =".$id; 
+$res = $this->query($sql,0); 
+return $res; 
+} 
+
+function traerTribiaPorParticipante($id) {
+	$sql = "select idusuariotribia,refparticipantes,cantidadaciertos,
+		intento,refestados,refpremios,
+		(case when puntobonusa = 1 then 'Si' else 'No' end) as puntobonusa,
+		(case when aciertobonusa = 1 then 'Si' else 'No' end) as aciertobonusa,
+		(case when puntobonusb = 1 then 'Si' else 'No' end) as puntobonusb,
+		(case when aciertobonusb = 1 then 'Si' else 'No' end) as aciertobonusb,
+		fechacreacion from dbusuariostribia where refparticipantes =".$id; 
+	$res = $this->query($sql,0); 
+	return $res;
+}
+
+/* Fin */
+/* /* Fin de la Tabla: dbusuariostribia*/
+
+
+
+/* PARA Participantes */
+
+function existeCedula($cedula) {
+    $sql = "select idparticipante from dbparticipantes where cedula = ".$cedula." and terminoscondiciones = 1";
+    $res = $this->query($sql,0);
+    
+    if (mysql_num_rows($res)>0) {
+        return 1;   
+    }
+    return 0;
+}
+
+function insertarParticipantes($refusuarios,$nombrecompleto,$cedula,$email,$terminoscondiciones) { 
+
+$sql = "insert into dbparticipantes(idparticipante,refusuarios,nombrecompleto,cedula,email,terminoscondiciones) 
+values ('',".$refusuarios.",'".utf8_decode($nombrecompleto)."','".utf8_decode($cedula)."','".utf8_decode($email)."',".$terminoscondiciones.")"; 
+$res = $this->query($sql,1); 
+return $res; 
+} 
+
+
+function modificarParticipantes($id,$refusuarios,$nombrecompleto,$cedula,$email,$terminoscondiciones) { 
+$sql = "update dbparticipantes 
+set 
+refusuarios = ".$refusuarios.",nombrecompleto = '".utf8_decode($nombrecompleto)."',cedula = '".utf8_decode($cedula)."',email = '".utf8_decode($email)."',terminoscondiciones = ".$terminoscondiciones." 
+where idparticipante =".$id; 
+$res = $this->query($sql,0); 
+return $res; 
+} 
+
+
+function eliminarParticipantes($id) { 
+$sql = "delete from dbparticipantes where idparticipante =".$id; 
+$res = $this->query($sql,0); 
+return $res; 
+} 
+
+
+function traerParticipantes() { 
+$sql = "select 
+p.idparticipante,
+p.refusuarios,
+p.nombrecompleto,
+p.cedula,
+p.email,
+p.terminoscondiciones,
+p.fechacreacion
+from dbparticipantes p 
+inner join dbusuarios usu ON usu.idusuario = p.refusuarios 
+inner join tbroles ro ON ro.idrol = usu.refroles 
+order by 1"; 
+$res = $this->query($sql,0); 
+return $res; 
+} 
+
+
+function traerParticipantesGrid() { 
+$sql = "select 
+p.idparticipante,
+usu.nombrecompleto as usuario,
+p.nombrecompleto,
+p.cedula,
+p.email,
+(case when p.terminoscondiciones = 1 then 'Si' else 'No' end) as terminoscondiciones,
+date_format(p.fechacreacion, '%Y/%m/%d %H:%i:%s') as fechacreacion,
+p.refusuarios
+from dbparticipantes p 
+inner join dbusuarios usu ON usu.idusuario = p.refusuarios 
+inner join tbroles ro ON ro.idrol = usu.refroles 
+order by 1"; 
+$res = $this->query($sql,0); 
+return $res; 
+} 
+
+
+
+
+
+function traerParticipantesPorId($id) { 
+$sql = "select idparticipante,refusuarios,nombrecompleto,cedula,email,terminoscondiciones,fechacreacion from dbparticipantes where idparticipante =".$id; 
 $res = $this->query($sql,0); 
 return $res; 
 } 
 
 /* Fin */
-/* /* Fin de la Tabla: dbusuariostribia*/
+/* /* Fin de la Tabla: dbparticipantes*/
 
 
 /* PARA Predio_menu */

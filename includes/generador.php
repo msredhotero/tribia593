@@ -37,6 +37,7 @@ function query($sql,$accion) {
 
 $tablasAr	= array("premios"        => "tbpremios",        
 "preguntas"=> "dbpreguntas",
+"participantes"        => "dbparticipantes",  
 "usuariostribia"  => "dbusuariostribia",         
 "usuarios"        => "dbusuarios",        
 "predio_menu"     => "predio_menu",       
@@ -48,6 +49,7 @@ function recursiveTablas($ar, $tabla, $aliasTablaMadre) {
 	
 	$tablasArAux2	= array("premios"        => "tbpremios",        
 "preguntas"=> "dbpreguntas",
+"participantes"        => "dbparticipantes",  
 "usuariostribia"  => "dbusuariostribia",         
 "usuarios"        => "dbusuarios",        
 "predio_menu"     => "predio_menu",       
@@ -56,6 +58,7 @@ function recursiveTablas($ar, $tabla, $aliasTablaMadre) {
 
 	$tablasArAux	= array("premios"        => 1,        
 "preguntas"=> 1,
+"participantes"        => 1,  
 "usuariostribia"  => 4,         
 "usuarios"        => 2,        
 "predio_menu"     => 1,       

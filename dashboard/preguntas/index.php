@@ -34,7 +34,7 @@ $eliminar = "eliminarPreguntas";
 
 $insertar = "insertarPreguntas";
 
-$tituloWeb = "Gestión: Tribia Cerveza 593";
+$tituloWeb = "Gestión: Trivia Cerveza 593";
 //////////////////////// Fin opciones ////////////////////////////////////////////////
 
 

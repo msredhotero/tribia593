@@ -19,7 +19,7 @@ session_destroy();
 
 
 
-<title>Sistema de Tribia Cerveza 593 </title>
+<title>Sistema de Trivia Cerveza 593 </title>
 
 
 

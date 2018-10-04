@@ -284,6 +284,7 @@ class Servicios {
 		$classEli = 'varborrar';
 		$idresultados = 'resultados';
 
+		$classMod = 'asd';
 
 
 		
@@ -351,7 +352,7 @@ class Servicios {
             	<thead>
                 	<tr>
                     	'.$cabeceras.'
-                        <th>Acciones</th>
+                        
                     </tr>
                 </thead>
                 <tbody id="'.$idresultados.'">

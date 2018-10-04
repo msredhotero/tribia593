@@ -11,7 +11,7 @@ body {
 	height: auto !important;
 	height: 100%;
 	margin: 0 auto -60px;
-	background: #0f0559 url(../imagenes/bg-1.jpg) 100% 0% no-repeat;
+	background: #0f0559 url(../imagenes/bg_juego.jpg) 0% 100% no-repeat;
 	background-size: cover;
 /*background:#FFF;*/
 }
@@ -91,22 +91,6 @@ body {
 	font: normal 18px DINLightRegular;
 }
 
-
-.errorInput {
-  display: inline-block;
-  -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
-  box-sizing: content-box;
-  cursor: pointer;
-  border: 1px solid #ff0000;
-  -webkit-border-radius: 23px;
-  border-radius: 23px;
-  -o-text-overflow: clip;
-  text-overflow: clip;
-  background: rgba(255,255,255,1);
-  -webkit-box-shadow: 0 0 3px 2px rgba(186,16,16,0.5) ;
-  box-shadow: 0 0 3px 2px rgba(186,16,16,0.5) ;
-}
 
 @font-face {
   font-family: "DINLightRegular";

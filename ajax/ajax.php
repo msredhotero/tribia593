@@ -19,6 +19,9 @@ switch ($accion) {
     case 'login':
         enviarMail($serviciosUsuarios);
         break;
+    case 'loginParticipantes':
+    	loginParticipantes($serviciosUsuarios);
+    	break;
 	case 'entrar':
 		entrar($serviciosUsuarios);
 		break;
@@ -33,6 +36,15 @@ switch ($accion) {
         break;
 
 
+case 'insertarParticipantes': 
+insertarParticipantes($serviciosReferencias); 
+break; 
+case 'modificarParticipantes': 
+modificarParticipantes($serviciosReferencias); 
+break; 
+case 'eliminarParticipantes': 
+eliminarParticipantes($serviciosReferencias); 
+break; 
 
 case 'insertarPreguntas': 
 insertarPreguntas($serviciosReferencias); 
@@ -116,10 +128,151 @@ case 'eliminarRoles':
 eliminarRoles($serviciosReferencias); 
 break; 
 
+/* juego  */
+
+case 'agregarAcierto':
+agregarAcierto($serviciosReferencias);
+break;
+
+case 'cargarBonoA':
+cargarBonoA($serviciosReferencias);
+break;
+
+case 'cargarBonoB':
+cargarBonoB($serviciosReferencias);
+break;
+
+case 'modificarEstado':
+modificarEstado($serviciosReferencias);
+break;
+
+/* fin juego */
+
 /* Fin */
 
 }
 /* Fin */
+
+
+/* juego */
+
+function modificarEstado($serviciosReferencias) {
+	$id = $_POST['id'];
+	$estado = $_POST['estado'];
+
+	$res = $serviciosReferencias->modificarEstado($id, $estado);
+
+	if ($res == true) { 
+		echo ''; 
+	} else { 
+		echo 'Huvo un error al modificar datos'; 
+	} 
+}
+
+
+function agregarAcierto($serviciosReferencias) {
+	$id = $_POST['id'];
+	$acierto = $_POST['acierto'];
+
+	$res = $serviciosReferencias->agregarAcierto($id, $acierto);
+
+	if ($res == true) { 
+		echo ''; 
+	} else { 
+		echo 'Huvo un error al modificar datos'; 
+	} 
+}
+
+
+function cargarBonoA($serviciosReferencias) {
+	$id = $_POST['id'];
+
+	$res = $serviciosReferencias->cargarBonoA($id);
+
+	if ($res == true) { 
+		echo ''; 
+	} else { 
+		echo 'Huvo un error al modificar datos'; 
+	} 
+}
+
+
+
+function cargarBonoB($serviciosReferencias) {
+	$id = $_POST['id'];
+
+	$res = $serviciosReferencias->cargarBonoB($id);
+
+	if ($res == true) { 
+		echo ''; 
+	} else { 
+		echo 'Huvo un error al modificar datos'; 
+	} 
+}
+
+/* fin juego */
+
+
+function insertarParticipantes($serviciosReferencias) { 
+
+	session_start();
+
+	$refusuarios = $_SESSION['idusuario']; 
+	$nombrecompleto = $_POST['apyn']; 
+	$cedula = $_POST['cedula']; 
+	$email = $_POST['email']; 
+
+	$terminoscondiciones = $_POST['terminoscondiciones']; 
+
+	
+	if ($serviciosReferencias->existeCedula($cedula) == 0) {
+		$res = $serviciosReferencias->insertarParticipantes($refusuarios,$nombrecompleto,$cedula,$email,$terminoscondiciones); 
+		
+		if ((integer)$res > 0) { 
+			
+
+			$_SESSION['idparticipante'] = $res;
+			$_SESSION['nombre_participante'] = $nombrecompleto;
+
+			echo ''; 
+		} else { 
+			echo 'Huvo un error al insertar datos';	 
+		} 
+	} else {
+		echo 'Ya existe ese numero de Cédula de Identificación';	
+	}
+} 
+
+function modificarParticipantes($serviciosReferencias) { 
+	$id = $_POST['id']; 
+	$refusuarios = $_POST['refusuarios']; 
+	$nombrecompleto = $_POST['nombrecompleto']; 
+	$cedula = $_POST['cedula']; 
+	$email = $_POST['email']; 
+	
+	if (isset($_POST['terminoscondiciones'])) { 
+		$terminoscondiciones	= 1; 
+	} else { 
+		$terminoscondiciones = 0; 
+	} 
+
+	
+	$res = $serviciosReferencias->modificarParticipantes($id,$refusuarios,$nombrecompleto,$cedula,$email,$terminoscondiciones); 
+	
+	if ($res == true) { 
+		echo ''; 
+	} else { 
+		echo 'Huvo un error al modificar datos'; 
+	} 
+} 
+
+
+function eliminarParticipantes($serviciosReferencias) { 
+	$id = $_POST['id']; 
+	$res = $serviciosReferencias->eliminarParticipantes($id); 
+	echo $res; 
+} 
+
 
 function insertarPreguntas($serviciosReferencias) { 
 $secuencia = $_POST['secuencia']; 
@@ -513,6 +666,14 @@ function enviarMail($serviciosUsuarios) {
 	//$idempresa  =	$_POST['idempresa'];
 	
 	echo $serviciosUsuarios->login($email,$pass);
+}
+
+function loginParticipantes($serviciosUsuarios) {
+	$email		=	$_POST['email'];
+	$pass		=	$_POST['pass'];
+	//$idempresa  =	$_POST['idempresa'];
+	
+	echo $serviciosUsuarios->loginParticipantes($email,$pass);
 }
 
 

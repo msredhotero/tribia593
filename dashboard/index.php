@@ -32,23 +32,34 @@ $eliminar = "eliminarOrdenes";
 
 $insertar = "insertarOrdenes";
 
-$tituloWeb = "Gestión: Talleres";
+$tituloWeb = "Gestión: Trivia Cerveza 593";
 //////////////////////// Fin opciones ////////////////////////////////////////////////
 
 
 /////////////////////// Opciones para la creacion del formulario  /////////////////////
 
 /////////////////////// Opciones para la creacion del view  patente,refmodelo,reftipovehiculo,anio/////////////////////
-$cabeceras 		= "	<th>Ingreso</th>
-					<th>Dueño</th>
-					<th>Vehiculo</th>
-					<th>Hora Entrada</th>
-					<th>Hora Salida</th>
-					<th>Usuario</th>
-					<th>Estado</th>";
+$cabeceras 		= "	<th>Participante</th>
+					<th>Cédula de Iden.</th>
+					<th>Email</th>
+					<th>Aciertos</th>
+					<th>Intentos</th>
+					<th>Fecha</th>";
 
 //////////////////////////////////////////////  FIN de los opciones //////////////////////////
+$lstCargados 	= $serviciosFunciones->camposTablaViewSinAcciones($cabeceras,$serviciosReferencias->traerUsuariostribiaGrid(),6);
 
+
+/////////////////////// Opciones para la creacion del view  patente,refmodelo,reftipovehiculo,anio/////////////////////
+$cabeceras2 		= "	<th>Usuario</th>
+					<th>Participante</th>
+					<th>Cédula de Iden.</th>
+					<th>Email</th>
+					<th>Terminos y Condiciones</th>
+					<th>Fecha</th>";
+
+//////////////////////////////////////////////  FIN de los opciones //////////////////////////
+$lstParticipantes 	= $serviciosFunciones->camposTablaViewSinAcciones($cabeceras2,$serviciosReferencias->traerParticipantesGrid(),6);
 
 
 ?>
@@ -64,7 +75,7 @@ $cabeceras 		= "	<th>Ingreso</th>
 
 
 
-<title>Gesti&oacute;n: Tribia Cerveza 593</title>
+<title>Gesti&oacute;n: Trivia Cerveza 593</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
@@ -123,14 +134,14 @@ $cabeceras 		= "	<th>Ingreso</th>
                 
                 </div>
             </div>
-    		<?php //echo $lstCargados; ?>
+    		<?php echo $lstCargados; ?>
     	</div>
     </div>
     
     
     <div class="boxInfoLargo tile-stats tile-white stat-tile">
         <div id="headBoxInfo">
-        	<p style="color: #fff; font-size:18px; height:16px;">Usuarios Registrados</p>
+        	<p style="color: #fff; font-size:18px; height:16px;">Participantes Registrados</p>
         	
         </div>
     	<div class="cuerpoBox">
@@ -142,7 +153,7 @@ $cabeceras 		= "	<th>Ingreso</th>
                 
                 </div>
             </div>
-    		<?php //echo $lstCargadosMora; ?>
+    		<?php echo $lstParticipantes; ?>
     	</div>
     </div>
     
@@ -274,7 +285,7 @@ $(document).ready(function(){
 	
 	
 	$('table.table').dataTable({
-		"order": [[ 0, "asc" ]],
+		"order": [[ 4, "desc" ],[ 5, "asc" ]],
 		"language": {
 			"emptyTable":     "No hay datos cargados",
 			"info":           "Mostrar _START_ hasta _END_ del total de _TOTAL_ filas",

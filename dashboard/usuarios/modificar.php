@@ -84,7 +84,7 @@ if ($_SESSION['idroll_predio'] != 1) {
 
 
 
-<title>Gestión: Tribia Cerveza 593</title>
+<title>Gestión: Trivia Cerveza 593</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 

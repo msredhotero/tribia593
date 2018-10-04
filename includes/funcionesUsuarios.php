@@ -34,7 +34,7 @@ if (mysql_num_rows($respusu) > 0) {
 	
 	
 	$idUsua = mysql_result($respusu,0,0);
-	$sqlpass = "select nombrecompleto,email,usuario,r.descripcion, r.idrol from dbusuarios u inner join tbroles r on r.idrol = u.refroles where password = '".$pass."' and idusuario = ".$idUsua;
+	$sqlpass = "select nombrecompleto,email,usuario,r.descripcion, r.idrol, u.idusuario from dbusuarios u inner join tbroles r on r.idrol = u.refroles where password = '".$pass."' and idusuario = ".$idUsua;
 
 
 	$resppass = $this->query($sqlpass,0);
@@ -60,6 +60,64 @@ if (mysql_num_rows($respusu) > 0) {
 		$_SESSION['email_predio'] = mysql_result($resppass,0,1);
 		$_SESSION['idroll_predio'] = mysql_result($resppass,0,4);
 		$_SESSION['refroll_predio'] = mysql_result($resppass,0,3);
+		$_SESSION['idusuario'] = mysql_result($resppass,0,'idusuario');
+		
+		return '';
+	}
+	
+}	else {
+	$error = 'Usuario y Password son campos obligatorios';	
+}
+	
+	
+	return $error;
+	
+}
+
+
+
+
+function loginParticipantes($usuario,$pass) {
+	
+	$sqlusu = "select * from dbusuarios where email = '".$usuario."' and refroles = 2";
+
+$error = '';
+
+if (trim($usuario) != '' and trim($pass) != '') {
+
+$respusu = $this->query($sqlusu,0);
+
+if (mysql_num_rows($respusu) > 0) {
+	
+	
+	$idUsua = mysql_result($respusu,0,0);
+	$sqlpass = "select nombrecompleto,email,usuario,r.descripcion, r.idrol, u.idusuario from dbusuarios u inner join tbroles r on r.idrol = u.refroles where password = '".$pass."' and idusuario = ".$idUsua;
+
+
+	$resppass = $this->query($sqlpass,0);
+	
+	if (mysql_num_rows($resppass) > 0) {
+		$error = '';
+		} else {
+			$error = 'Usuario o Password incorrecto';
+		}
+	
+	}
+	else
+	
+	{
+		$error = 'Usuario o Password incorrecto';	
+	}
+	
+	if ($error == '') {
+		//die(var_dump($error));
+		session_start();
+		$_SESSION['usua_predio'] = $usuario;
+		$_SESSION['nombre_predio'] = mysql_result($resppass,0,0);
+		$_SESSION['email_predio'] = mysql_result($resppass,0,1);
+		$_SESSION['idroll_predio'] = mysql_result($resppass,0,4);
+		$_SESSION['refroll_predio'] = mysql_result($resppass,0,3);
+		$_SESSION['idusuario'] = mysql_result($resppass,0,'idusuario');
 		
 		return '';
 	}

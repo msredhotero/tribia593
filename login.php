@@ -20,7 +20,7 @@ $servicios = new Servicios();
 
 
 
-<title>Acceso Restringido: Tribia Cerveza 593</title>
+<title>Acceso Restringido: Trivia Cerveza 593</title>
 
 
 

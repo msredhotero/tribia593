@@ -35,8 +35,8 @@ if (mysql_num_rows($existe)>0) {
     if (mysql_result($existe, 0,'intento') == 0) {
         $yajugo = 0;
     } else {
-        $yajugo = 1;    
-        $serviciosReferencias->modificarEstado($_SESSION['idparticipante'],4);
+        $yajugo = 0;    
+        //$serviciosReferencias->modificarEstado($_SESSION['idparticipante'],4);
     }
     
 } else {
@@ -75,7 +75,7 @@ if (mysql_num_rows($existe)>0) {
 
         <div id="contenedorPreguntas">
         	<div class="row titulo" align="center" id="lstPreguntas">
-                <div class="row" style="margin-top: -2%;">
+                <div class="row" style="margin-top: 0%;">
                     <div class="col-md-3 col-xs-2">
                     </div>
             		<div class="col-md-6 col-xs-8">

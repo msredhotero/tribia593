@@ -225,22 +225,20 @@ function insertarParticipantes($serviciosReferencias) {
 	$terminoscondiciones = $_POST['terminoscondiciones']; 
 
 	
-	if ($serviciosReferencias->existeCedula($cedula) == 0) {
-		$res = $serviciosReferencias->insertarParticipantes($refusuarios,$nombrecompleto,$cedula,$email,$terminoscondiciones); 
+
+	$res = $serviciosReferencias->insertarParticipantes($refusuarios,$nombrecompleto,$cedula,$email,$terminoscondiciones); 
+	
+	if ((integer)$res > 0) { 
 		
-		if ((integer)$res > 0) { 
-			
 
-			$_SESSION['idparticipante'] = $res;
-			$_SESSION['nombre_participante'] = $nombrecompleto;
+		$_SESSION['idparticipante'] = $res;
+		$_SESSION['nombre_participante'] = $nombrecompleto;
 
-			echo ''; 
-		} else { 
-			echo 'Huvo un error al insertar datos';	 
-		} 
-	} else {
-		echo 'Ya existe ese numero de Cédula de Identificación';	
-	}
+		echo ''; 
+	} else { 
+		echo 'Huvo un error al insertar datos';	 
+	} 
+
 } 
 
 function modificarParticipantes($serviciosReferencias) { 

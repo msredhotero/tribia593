@@ -39,24 +39,24 @@ $tituloWeb = "Gestión: Trivia Cerveza 593";
 /////////////////////// Opciones para la creacion del formulario  /////////////////////
 
 /////////////////////// Opciones para la creacion del view  patente,refmodelo,reftipovehiculo,anio/////////////////////
-$cabeceras 		= "	<th>Participante</th>
+$cabeceras 		= utf8_decode("	<th>Participante</th>
 					<th>Cédula de Iden.</th>
 					<th>Email</th>
 					<th>Aciertos</th>
 					<th>Intentos</th>
-					<th>Fecha</th>";
+					<th>Fecha</th>");
 
 //////////////////////////////////////////////  FIN de los opciones //////////////////////////
 $lstCargados 	= $serviciosFunciones->camposTablaViewSinAcciones($cabeceras,$serviciosReferencias->traerUsuariostribiaGrid(),6);
 
 
 /////////////////////// Opciones para la creacion del view  patente,refmodelo,reftipovehiculo,anio/////////////////////
-$cabeceras2 		= "	<th>Usuario</th>
+$cabeceras2 		= utf8_decode("	<th>Usuario</th>
 					<th>Participante</th>
 					<th>Cédula de Iden.</th>
 					<th>Email</th>
 					<th>Terminos y Condiciones</th>
-					<th>Fecha</th>";
+					<th>Fecha</th>");
 
 //////////////////////////////////////////////  FIN de los opciones //////////////////////////
 $lstParticipantes 	= $serviciosFunciones->camposTablaViewSinAcciones($cabeceras2,$serviciosReferencias->traerParticipantesGrid(),6);
@@ -134,7 +134,7 @@ $lstParticipantes 	= $serviciosFunciones->camposTablaViewSinAcciones($cabeceras2
                 
                 </div>
             </div>
-    		<?php echo $lstCargados; ?>
+    		<?php echo utf8_encode($lstCargados); ?>
     	</div>
     </div>
     
@@ -153,7 +153,7 @@ $lstParticipantes 	= $serviciosFunciones->camposTablaViewSinAcciones($cabeceras2
                 
                 </div>
             </div>
-    		<?php echo $lstParticipantes; ?>
+    		<?php echo utf8_encode($lstParticipantes); ?>
     	</div>
     </div>
     

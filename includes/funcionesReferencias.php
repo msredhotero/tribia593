@@ -5,7 +5,7 @@
  * @ABM consultas sobre las tablas de usuarios y usarios-clientes
  */
 
-date_default_timezone_set('America/Buenos_Aires');
+date_default_timezone_set('America/Guayaquil');
 
 class ServiciosReferencias {
 
@@ -305,7 +305,7 @@ function existeCedula($cedula) {
 function insertarParticipantes($refusuarios,$nombrecompleto,$cedula,$email,$terminoscondiciones) { 
 
 $sql = "insert into dbparticipantes(idparticipante,refusuarios,nombrecompleto,cedula,email,terminoscondiciones) 
-values ('',".$refusuarios.",'".utf8_decode($nombrecompleto)."','".utf8_decode($cedula)."','".utf8_decode($email)."',".$terminoscondiciones.")"; 
+values ('',".$refusuarios.",'".($nombrecompleto)."','".($cedula)."','".($email)."',".$terminoscondiciones.")"; 
 $res = $this->query($sql,1); 
 return $res; 
 } 
@@ -314,7 +314,7 @@ return $res;
 function modificarParticipantes($id,$refusuarios,$nombrecompleto,$cedula,$email,$terminoscondiciones) { 
 $sql = "update dbparticipantes 
 set 
-refusuarios = ".$refusuarios.",nombrecompleto = '".utf8_decode($nombrecompleto)."',cedula = '".utf8_decode($cedula)."',email = '".utf8_decode($email)."',terminoscondiciones = ".$terminoscondiciones." 
+refusuarios = ".$refusuarios.",nombrecompleto = '".($nombrecompleto)."',cedula = '".($cedula)."',email = '".($email)."',terminoscondiciones = ".$terminoscondiciones." 
 where idparticipante =".$id; 
 $res = $this->query($sql,0); 
 return $res; 

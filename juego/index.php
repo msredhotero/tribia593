@@ -71,6 +71,7 @@ if (mysql_num_rows($existe)>0) {
 
     </head>
     <body>
+
         <form role="form" class="form-horizontal">
 
         <div id="contenedorPreguntas">
@@ -79,7 +80,7 @@ if (mysql_num_rows($existe)>0) {
                     <div class="col-md-3 col-xs-2">
                     </div>
             		<div class="col-md-6 col-xs-8">
-                        <h3 class="pregunta animated bounceInDown"></h3>
+                        <h3 class="pregunta"></h3>
                     </div>
                     <div class="col-md-3 col-xs-2">
                     </div>
@@ -99,7 +100,7 @@ if (mysql_num_rows($existe)>0) {
                     <div class="col-md-3 col-xs-3">
                     </div>
                     <div class="col-md-6 col-xs-6">
-                        <button type="button" class="btnrespuesta btn btn-default enjoy-css respuesta2 animated bounceInRight" id="" style="margin-right: 1%;"></button>
+                        <button type="button" class="btnrespuesta btn btn-default enjoy-css respuesta2 animated bounceInLeft" id="" style="margin-right: 1%;"></button>
                     </div>
                     <div class="col-md-3 col-xs-3">
                     </div>
@@ -120,7 +121,7 @@ if (mysql_num_rows($existe)>0) {
                     <div class="col-md-3 col-xs-3">
                     </div>
                     <div class="col-md-6 col-xs-6">
-                        <button type="button" class="btnrespuesta btn btn-default enjoy-css respuesta4 animated bounceInRight" id="" style="margin-right: 1%;"></button>
+                        <button type="button" class="btnrespuesta btn btn-default enjoy-css respuesta4 animated bounceInLeft" id="" style="margin-right: 1%;"></button>
                     </div>
                     <div class="col-md-3 col-xs-3">
                     </div>
@@ -129,6 +130,8 @@ if (mysql_num_rows($existe)>0) {
 
             <input type="hidden" name="valorRespuesta" id="valorRespuesta" value="0" />
             <input type="hidden" name="valorPregunta" id="valorPregunta" value="1" />
+            
+            <div class="row">
             <div class="form-group" style="margin-top: 2%;">
                 <div class="col-md-3 col-xs-3">
                 </div>
@@ -149,8 +152,9 @@ if (mysql_num_rows($existe)>0) {
                 <div class="col-md-3 col-xs-3">
                 </div>
             </div>
+            </div>
             
-            
+            <div class="row">
             <div class="form-group" style="margin-top: 1%;">
                 <div class="col-md-3 col-xs-3">
                 </div>
@@ -161,13 +165,16 @@ if (mysql_num_rows($existe)>0) {
                 <div class="col-md-3 col-xs-3">
                 </div>
             </div>
+            </div>
     	
         </div>
 
-
+        <!-- animated flash infinite -->
+        <!-- animated bounceInRight delay-1s -->
         <div id="contenedorGanaBotella" style="display: none;">
-            <img class="animated flash infinite" src="../imagenes/bg_confetib.png" style="float: left; top: 0; left: 0; width: 95%;z-index: 50; position: absolute;">
-            <img class="animated bounceInRight delay-1s" src="../imagenes/bg_otela_iniciob.png" style="float: left; top: 0; left: 0; position: absolute; height: 100%; z-index: 97; margin-left: 15%;">
+
+            <img class="" src="../imagenes/bg_confetib.png" style="float: left; top: 0; left: 0; width: 95%;z-index: 50; position: absolute;">
+            <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_otela_iniciob.png" style="float: left; top: 0; left: 0; position: absolute; height: 100%; z-index: 97; margin-left: 15%;">
 
             <div class="footer">
         
@@ -175,12 +182,16 @@ if (mysql_num_rows($existe)>0) {
 
         </div>
 
+
+
+
         <div id="contenedorGanaEntrada" style="display: none;">
+
             <img class="animated flash infinite" src="../imagenes/bg_confeti.png" style="float: left; top: 0; left: 0; width: 95%;z-index: 50; position: absolute;">
             <img class="animated pulse infinite delay-1s" src="../imagenes/bg_entrada_solo.png" style="float: left; top: 50%; left: 50%; width: 50%;z-index: 55; position: absolute; margin-left: -25%;margin-top: -17%;">
 
             <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_meetgret_cervezab.png" style="float: right; bottom: 0; right: 0; height: 70%;z-index: 51; position: absolute; margin-right: 9%;">
-            <img class="animated bounceInRight delay-1s" src="../imagenes/bg_meetgret_cerveza.png" style="float: left; bottom: 0; left: 0; height: 70%;z-index: 52; position: absolute; margin-left: 13%;">
+            <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_meetgret_cerveza.png" style="float: left; bottom: 0; left: 0; height: 70%;z-index: 52; position: absolute; margin-left: 13%;">
 
             <div class="footer">
         
@@ -190,11 +201,12 @@ if (mysql_num_rows($existe)>0) {
 
 
         <div id="contenedorGanaMeetGreet" style="display: none;">
+
             <img class="animated flash infinite" src="../imagenes/bg_confeti.png" style="float: left; top: 0; left: 0; width: 95%;z-index: 50; position: absolute;">
             <img class="animated zoomIn infinite delay-2s" src="../imagenes/bg_meetgret_mgb.png" style="float: left; top: 50%; left: 50%; width: 50%;z-index: 55; position: absolute; margin-left: -25%;margin-top: -17%;">
 
             <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_meetgret_cerveza.png" style="float: right; bottom: 0; right: 0; height: 70%;z-index: 51; position: absolute; margin-right: 4%;">
-            <img class="animated bounceInRight delay-1s" src="../imagenes/bg_meetgret_cervezab.png" style="float: left; bottom: 0; left: 0; height: 70%;z-index: 52; position: absolute; margin-left: 4%;">
+            <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_meetgret_cervezab.png" style="float: left; bottom: 0; left: 0; height: 70%;z-index: 52; position: absolute; margin-left: 4%;">
             <div class="footer">
         
             </div>
@@ -203,8 +215,9 @@ if (mysql_num_rows($existe)>0) {
 
 
         <div id="contenedorRespuestaIncorrecta" style="display: none;">
+
             <img class="animated flash infinite" src="../imagenes/bg_respuesta_incorrecta.png" style="float: left; top: 0; left: 0; width: 100%;z-index: 50; position: absolute;">
-            <img class="animated bounceInRight delay-1s" src="../imagenes/bg_otela_iniciob.png" style="float: left; top: 0; left: 0; position: absolute; height: 100%; z-index: 97; margin-left: 5%;">
+            <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_otela_iniciob.png" style="float: left; top: 0; left: 0; position: absolute; height: 100%; z-index: 97; margin-left: 5%;">
 
             <div class="footer">
         
@@ -213,8 +226,9 @@ if (mysql_num_rows($existe)>0) {
         </div>
 
         <div id="contenedorTiempoAgotado" style="display: none;">
+
             <img class="animated flash infinite delay-1s" src="../imagenes/bg_tiempo_agotado.png" style="float: left; top: 0; left: 0; width: 100%;z-index: 50; position: absolute;">
-            <img class="animated bounceInRight delay-1s acarr" src="../imagenes/bg_otela_iniciob.png" style="float: left; top: 0; left: 0; position: absolute; height: 100%; z-index: 97; margin-left: 5%;">
+            <img class="animated bounceInLeft delay-1s acarr" src="../imagenes/bg_otela_iniciob.png" style="float: left; top: 0; left: 0; position: absolute; height: 100%; z-index: 97; margin-left: 5%;">
 
             <div class="footer">
         
@@ -252,6 +266,13 @@ if (mysql_num_rows($existe)>0) {
     <script type="text/javascript">
         
         $(document).ready(function(){
+
+            $('.btnrespuesta').click(function() {
+                $('.btnrespuesta').removeClass('enjoy-css-active');
+                idResp =  $(this).attr("id");
+                $('#'+idResp).addClass('enjoy-css-active');
+
+            });
             
 
             $('#volver').click(function() {
@@ -357,6 +378,9 @@ if (mysql_num_rows($existe)>0) {
             });
 
             $('#responder').click(function() {
+
+                $('.btnrespuesta').removeClass('enjoy-css-active');
+                
                 bar.set(0);
                 
                 bar.animate(1.0, {

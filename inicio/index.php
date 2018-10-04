@@ -36,14 +36,14 @@ if (!isset($_SESSION['usua_predio']))
                 <div class="col-md-2 col-xs-2">
                 </div>
         		<div class="col-md-7 col-xs-7">
-                    <img class="imgjuego" src="../imagenes/logo_juego.png" width="50%">
+                    <img class="imgjuego" src="../imagenes/logo_juego.png" width="45%" style="margin-top: -8%;">
                 </div>
                 <div class="col-md-3 col-xs-3">
                 </div>
         		
         	</div>
 
-
+            <div class="row">
             <div class="form-group" style="margin-top: 4%;">
                 <div class="col-md-2 col-xs-1">
                 </div>
@@ -58,18 +58,21 @@ if (!isset($_SESSION['usua_predio']))
                 <div class="col-md-3 col-xs-2">
                 </div>
             </div>
-    	
-        </form>
-
+    	    </div>
+        
+<div class="footer">
+    
+        </div>
 
 
         <div class="footer">
     
         </div>
 
-        <img class="animated bounceInRight delay-1s" src="../imagenes/bg_otela_iniciob.png" style="float: right; top: 0; right: 0; position: absolute; height: 100%; z-index: 97; margin-right: 5%;">
-        <img class="animated bounceInRight delay-2s" src="../imagenes/bg_otela_inicio.png" style="float: right; top: 0; right: 0; position: absolute; height: 100%; z-index: 98;">
-
+        <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_otela_iniciob.png" style="float: right; top: 0; right: 0; position: absolute; height: 100%; z-index: 97; margin-right: 5%;">
+        <img class="animated bounceInLeft delay-2s" src="../imagenes/bg_otela_inicio.png" style="float: right; top: 0; right: 0; position: absolute; height: 100%; z-index: 98;">
+        
+</form>
     <script type="text/javascript">
         
         $(document).ready(function(){

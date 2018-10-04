@@ -5,12 +5,15 @@
 
 body {
 
-width: 1280px;
-  height: 800px;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: auto;
 	background: #0f0559 url(../imagenes/bg_pregunta_1.jpg) 0% 0% no-repeat;
   background-size: cover;
 /*background:#FFF;*/
+}
+
+.row {
+  width: 96%;
 }
 
 .titulo {
@@ -143,7 +146,8 @@ width: 1280px;
     left: 0;
     bottom: 0;
     width: 100%;
-    background: url(../imagenes/bg_hielo_footer.png) no-repeat;
+    background: url(../imagenes/bg_hielo_footer.png)  0% 0% no-repeat;
+    background-size: cover;
     color: white;
     text-align: center;
     height: 98px;

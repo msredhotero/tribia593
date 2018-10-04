@@ -6,8 +6,8 @@
 body {
 
 	font-family:RobotoThin;
-	width: 1280px;
-	height: 800px;
+	width: 100%;
+	height: auto;
 
 	background: #0f0559 url(../imagenes/bg-1.jpg) 0% 0% no-repeat;
 	background-size: cover;

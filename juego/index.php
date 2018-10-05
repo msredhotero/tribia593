@@ -173,8 +173,11 @@ if (mysql_num_rows($existe)>0) {
         <!-- animated bounceInRight delay-1s -->
         <div id="contenedorGanaBotella" style="display: none;">
 
-            <img class="" src="../imagenes/bg_confetib.png" style="float: left; top: 0; left: 0; width: 95%;z-index: 50; position: absolute;">
-            <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_otela_iniciob.png" style="float: left; top: 0; left: 0; position: absolute; height: 100%; z-index: 97; margin-left: 15%;">
+            <img class="animated flash infinite" src="../imagenes/bg_confetib.png" style="float: left; top: 0; left: 0; width: 95%;z-index: 59; position: absolute;">
+            <img class="animated bounceInLeft delay-1s" src="../imagenes/bg_otela_iniciob.png" style="float: left; top: 0; left: 0; position: absolute; height: 100%; z-index: 97; margin-left: 5%;">
+
+            <img class="animated pulse infinite delay-1s" src="../imagenes/bg_destapador_solo.png" style="float: left; top: 40%; left: 50%; width: 20%;z-index: 200; position: absolute; margin-left: -20%;margin-top: -17%;">
+
 
             <div class="footer">
         
